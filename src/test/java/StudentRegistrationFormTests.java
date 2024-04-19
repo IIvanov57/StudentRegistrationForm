@@ -15,16 +15,12 @@ public class StudentRegistrationFormTests {
     Configuration.baseUrl = "https://demoqa.com/";
     Configuration.pageLoadStrategy = "eager";
     Configuration.browserSize = "1024x768";
-    // Configuration.browserPosition="10*10";
-    //WebDriverRunner.getWebDriver().manage().window().maximize();
 
   }
 
   @Test
   void successfulFillRegistrationFormTest() throws InterruptedException {
     open("automation-practice-form");
-    switchTo().window(0);
-    //field Name
     $("#firstName").setValue("ivan").click();
     $("#lastName").setValue("ivanov").click();
     $("#userEmail").setValue("test@test.ru").click();
@@ -62,7 +58,7 @@ public class StudentRegistrationFormTests {
 
     //uploadPicture
     $("#uploadPicture").hover();
-    Thread.sleep(3000);
+    Thread.sleep(1000);
     $("#uploadPicture").val("C:\\Users\\ivan.vl.ivanov\\Desktop\\Безымянный.jpg");
 
     //field Current Address
@@ -72,7 +68,7 @@ public class StudentRegistrationFormTests {
     //State and City
     //State
     $(".css-1wa3eu0-placeholder").click();
-    Thread.sleep(2000);
+    Thread.sleep(1000);
     $("#react-select-3-option-2").click();
     //City
     $("#stateCity-wrapper > div:nth-child(3)").click();
