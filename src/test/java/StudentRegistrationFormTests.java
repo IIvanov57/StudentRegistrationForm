@@ -1,7 +1,7 @@
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import com.codeborne.selenide.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -14,8 +14,8 @@ public class StudentRegistrationFormTests {
   static void beforeALL() {
     Configuration.baseUrl = "https://demoqa.com/";
     Configuration.pageLoadStrategy = "eager";
-    Configuration.browserSize="1024x768";
-   // Configuration.browserPosition="10*10";
+    Configuration.browserSize = "1024x768";
+    // Configuration.browserPosition="10*10";
     //WebDriverRunner.getWebDriver().manage().window().maximize();
 
   }
@@ -24,56 +24,72 @@ public class StudentRegistrationFormTests {
   void successfulFillRegistrationFormTest() throws InterruptedException {
     open("automation-practice-form");
     switchTo().window(0);
-    //WebDriverRunner.getWebDriver().manage().window().maximize();
-    $("#firstName").setValue("testName").click();
-    $("#lastName").setValue("testLastName").click();
+    //field Name
+    $("#firstName").setValue("ivan").click();
+    $("#lastName").setValue("ivanov").click();
     $("#userEmail").setValue("test@test.ru").click();
-    $(".custom-radio:nth-child(1) > .custom-control-label").click();//пофиксить
+    //checkbox Gender
+    $(".custom-radio:nth-child(1) > .custom-control-label").click();//можно лучше наверное
+
+    //field mobile
     $("#userNumber").setValue("88005005555").click();
 
-    //dateOfBirthInput
+    //dateOfBirth
     $("#dateOfBirthInput").click();
 
+    //month
     $(".react-datepicker__month-select").click();
     $(".react-datepicker__month-select").selectOption("August");
 
-    //class="react-datepicker__year-select"
+    //year
     $(".react-datepicker__year-select").click();
     $(".react-datepicker__year-select").selectOption("1992");
-    // int i = 2;
-    //react-datepicker__day
+
+    //day
     $(".react-datepicker__day--008").click();
-  //$("[aria-label='Choose Sunday, August 8th, 1992']").click();
 
-    //react-datepicker__week
-
-
-
-
+    //scroll page
     $(".subjects-auto-complete__value-container").scrollIntoView(true);
-    //$(".subjects-auto-complete__value-container").press("e");
-    //int i = 2;
 
-    //$(".subjects-auto-complete__input").click();
+
+    //field subjects
     $("#subjectsInput").click();
     $("#subjectsInput").setValue("English").pressEnter();
     Thread.sleep(1000);
-    //$("#subjectsInput").selectOptionByValue("English");
-    $("#hobbies-checkbox-3").click();
 
+    //hobbies-checkbox
+    $(".custom-checkbox:nth-child(3) > .custom-control-label").click();//можно лучше наверное
 
-    int i = 2;
-    $(".subjects-auto-complete__value-container.subjects-auto-complete__input").sendKeys("e");
-            //.selectOptionByValue("English");
+    //uploadPicture
+    $("#uploadPicture").hover();
+    Thread.sleep(3000);
+    $("#uploadPicture").val("C:\\Users\\ivan.vl.ivanov\\Desktop\\Безымянный.jpg");
 
-    //$(".subjects-auto-complete__value-container").sendKeys("E");
-    //$(".subjects-auto-complete__value-container").press("E")
-    //        .selectOptionByValue("English");
-    //int i = 2;
-    $("#currentAddress").scrollIntoView(false).setValue("current address").pressEnter();
-    //$("#currentAddress").setValue("current address").click();
+    //field Current Address
+    $("#currentAddress").click();
+    $("#currentAddress").setValue("current address").click();
 
-    // i = 2;
+    //State and City
+    //State
+    $(".css-1wa3eu0-placeholder").click();
+    Thread.sleep(2000);
+    $("#react-select-3-option-2").click();
+    //City
+    $("#stateCity-wrapper > div:nth-child(3)").click();
+    $("#react-select-4-option-1").click();
+
+    $("#submit").pressEnter();
+
+    //check filed form
+    $(".table-responsive").shouldHave(text("ivan ivanov"));
+    $(".table-responsive").shouldHave(text("test@test.ru"));
+    $(".table-responsive").shouldHave(text("Male"));
+    $(".table-responsive").shouldHave(text("8800500555"));
+    $(".table-responsive").shouldHave(text("08 August,1992"));
+    $(".table-responsive").shouldHave(text("English"));
+    $(".table-responsive").shouldHave(text("Music"));
+    $(".table-responsive").shouldHave(text("current address"));
+    $(".table-responsive").shouldHave(text("Haryana Panipat"));
 
   }
 }
