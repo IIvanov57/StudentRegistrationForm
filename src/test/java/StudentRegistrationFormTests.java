@@ -86,6 +86,7 @@ public class StudentRegistrationFormTests {
     $x("//td[contains(text(),'Picture')]/../td[2]").shouldHave(text("Picture.jpg"));
     $x("//td[contains(text(),'Address')]/../td[2]").shouldHave(text("current address"));
     $x("//td[contains(text(),'State and City')]/../td[2]").shouldHave(text("NCR Delhi"));
+    
 
   }
 }
