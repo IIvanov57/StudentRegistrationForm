@@ -21,14 +21,18 @@ public class StudentRegistrationFormTests {
   @Test
   void successfulFillRegistrationFormTest() throws InterruptedException {
     open("automation-practice-form");
+    executeJavaScript("$('footer').remove();");
+    executeJavaScript("$('#fixedban').remove();");
+
     $("#firstName").setValue("ivan").click();
     $("#lastName").setValue("ivanov").click();
     $("#userEmail").setValue("test@test.ru").click();
+
     //checkbox Gender
-    $(".custom-radio:nth-child(1) > .custom-control-label").click();//можно лучше наверное
+    $("label[for=gender-radio-1]").click();
 
     //field mobile
-    $("#userNumber").setValue("88005005555").click();
+    $("#userNumber").setValue("8005001234").click();
 
     //dateOfBirth
     $("#dateOfBirthInput").click();
@@ -51,15 +55,12 @@ public class StudentRegistrationFormTests {
     //field subjects
     $("#subjectsInput").click();
     $("#subjectsInput").setValue("English").pressEnter();
-    Thread.sleep(1000);
 
     //hobbies-checkbox
-    $(".custom-checkbox:nth-child(3) > .custom-control-label").click();//можно лучше наверное
+    $("label[for=hobbies-checkbox-3]").click();
 
     //uploadPicture
-    $("#uploadPicture").hover();
-    Thread.sleep(1000);
-    $("#uploadPicture").val("C:\\Users\\ivan.vl.ivanov\\Desktop\\Безымянный.jpg");
+    $("#uploadPicture").uploadFromClasspath("Picture.jpg");
 
     //field Current Address
     $("#currentAddress").click();
@@ -67,25 +68,24 @@ public class StudentRegistrationFormTests {
 
     //State and City
     //State
-    $(".css-1wa3eu0-placeholder").click();
-    Thread.sleep(1000);
-    $("#react-select-3-option-2").click();
+    $("#state input").setValue("NCR").pressEnter();
     //City
-    $("#stateCity-wrapper > div:nth-child(3)").click();
-    $("#react-select-4-option-1").click();
+    $("#city input").setValue("Delhi").pressEnter();
 
     $("#submit").pressEnter();
 
     //check filed form
-    $(".table-responsive").shouldHave(text("ivan ivanov"));
-    $(".table-responsive").shouldHave(text("test@test.ru"));
-    $(".table-responsive").shouldHave(text("Male"));
-    $(".table-responsive").shouldHave(text("8800500555"));
-    $(".table-responsive").shouldHave(text("08 August,1992"));
-    $(".table-responsive").shouldHave(text("English"));
-    $(".table-responsive").shouldHave(text("Music"));
-    $(".table-responsive").shouldHave(text("current address"));
-    $(".table-responsive").shouldHave(text("Haryana Panipat"));
+
+    $x("//td[contains(text(),'Student Name')]/../td[2]").shouldHave(text("ivan ivanov"));
+    $x("//td[contains(text(),'Student Email')]/../td[2]").shouldHave(text("test@test.ru"));
+    $x("//td[contains(text(),'Gender')]/../td[2]").shouldHave(text("Male"));
+    $x("//td[contains(text(),'Mobile')]/../td[2]").shouldHave(text("8005001234"));
+    $x("//td[contains(text(),'Date of Birth')]/../td[2]").shouldHave(text("08 August,1992"));
+    $x("//td[contains(text(),'Subjects')]/../td[2]").shouldHave(text("English"));
+    $x("//td[contains(text(),'Hobbies')]/../td[2]").shouldHave(text("Music"));
+    $x("//td[contains(text(),'Picture')]/../td[2]").shouldHave(text("Picture.jpg"));
+    $x("//td[contains(text(),'Address')]/../td[2]").shouldHave(text("current address"));
+    $x("//td[contains(text(),'State and City')]/../td[2]").shouldHave(text("NCR Delhi"));
 
   }
 }
