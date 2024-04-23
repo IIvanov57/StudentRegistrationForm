@@ -68,9 +68,11 @@ public class StudentRegistrationFormTests {
 
     //State and City
     //State
-    $("#state input").setValue("NCR").pressEnter();
+    $("#state").click();
+    $("#react-select-3-option-0").click();
     //City
-    $("#city input").setValue("Delhi").pressEnter();
+    $("#city").click();
+    $("#react-select-4-option-0").click();
 
     $("#submit").pressEnter();
 
