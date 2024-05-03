@@ -2,12 +2,15 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.TableResponsiveComponent;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
   CalendarComponent calendarComponent = new CalendarComponent();
+  TableResponsiveComponent responsiveComponent = new TableResponsiveComponent();
 
   private final SelenideElement firstNameInput = $("#firstName"),
           lastNameInput = $("#lastName"),
@@ -97,6 +100,20 @@ public class RegistrationPage {
 
   public RegistrationPage submit() {
     submitButton.pressEnter();
+    return this;
+  }
+
+  public RegistrationPage checkResult(String key, String value) {
+    responsiveComponent.checkResultInTable(key,value);
+    return this;
+  }
+
+  public RegistrationPage isAvailableResult() {
+    responsiveComponent.isAvailableTableResult();
+    return this;
+  }
+  public RegistrationPage isNotAvailableResult() {
+    responsiveComponent.isNotAvailableTableResult();
     return this;
   }
 
