@@ -4,7 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.TableResponsiveComponent;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -104,7 +103,7 @@ public class RegistrationPage {
   }
 
   public RegistrationPage checkResult(String key, String value) {
-    responsiveComponent.checkResultInTable(key,value);
+    responsiveComponent.checkResultInTable(key, value);
     return this;
   }
 
@@ -112,6 +111,7 @@ public class RegistrationPage {
     responsiveComponent.isAvailableTableResult();
     return this;
   }
+
   public RegistrationPage isNotAvailableResult() {
     responsiveComponent.isNotAvailableTableResult();
     return this;
