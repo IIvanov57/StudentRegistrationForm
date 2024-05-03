@@ -1,4 +1,4 @@
-package pages.components;
+package components;
 
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
@@ -10,13 +10,10 @@ public class CalendarComponent {
           selectEighthDay = $(".react-datepicker__day--008");
 
   public void setDate(String month, String year) {
-    //month
     selectMonth.click();
     selectMonth.selectOption(month);
-    //year
     selectYear.click();
     selectYear.selectOption(year);
-    //day
     selectEighthDay.click();
   }
 }
