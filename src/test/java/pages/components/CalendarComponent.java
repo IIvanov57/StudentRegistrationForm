@@ -1,6 +1,9 @@
 package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
+
+import java.util.Locale;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class CalendarComponent {

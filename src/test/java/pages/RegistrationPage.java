@@ -18,7 +18,7 @@ public class RegistrationPage {
           genderRadio = $("#genterWrapper"),
           calendarInput = $("#dateOfBirthInput"),
           subjectInput = $("#subjectsInput"),
-          hobbitsCheckBox = $("label[for=hobbies-checkbox-3]"),
+          hobbitsCheckBox = $("#hobbiesWrapper"),
           uploadPictureInput = $("#uploadPicture"),
           addressInput = $("#currentAddress"),
           state = $("#state"),
@@ -73,8 +73,9 @@ public class RegistrationPage {
     return this;
   }
 
-  public RegistrationPage setHobbits() {
-    hobbitsCheckBox.click();
+  public RegistrationPage setHobbits(String hobby) {
+    hobbitsCheckBox.$(byText(hobby)).click();
+    ;
     return this;
   }
 
