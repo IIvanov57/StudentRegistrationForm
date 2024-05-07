@@ -75,7 +75,6 @@ public class RegistrationPage {
 
   public RegistrationPage setHobbits(String hobby) {
     hobbitsCheckBox.$(byText(hobby)).click();
-    ;
     return this;
   }
 
