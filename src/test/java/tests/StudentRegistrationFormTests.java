@@ -2,12 +2,25 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+
+import static utils.RandomUtils.*;
 
 public class StudentRegistrationFormTests {
 
   RegistrationPage registrationPage = new RegistrationPage();
+
+  String firstName,
+          lastName,
+          email,
+          phone,
+          gender,
+          address,
+          hobby,
+          month,
+          year;
 
   @BeforeAll
   static void beforeALL() {
@@ -16,42 +29,55 @@ public class StudentRegistrationFormTests {
 
   }
 
+  @BeforeEach
+  void generateTestDate() {
+    firstName = getRandomFirstName();
+    lastName = getRandomLastName();
+    email = getRandomEmailAddress();
+    phone = getRandomPhone();
+    gender = getRandomGender();
+    address = getRandomAddress();
+    hobby = getRandomHobbits();
+    month = getRandomMonth();
+    year = getRandomYear();
+  }
+
   @Test
   void successfulFillRegistrationFormTest() {
     registrationPage.openPage("automation-practice-form")
-            .setFirstName("ivan")
-            .setLastName("ivanov")
-            .setEmail("test@test.ru")
-            .setGender("Male")
-            .setPhone("8005001234")
-            .setDateOfBirth("August", "1992")
+            .setFirstName(firstName)
+            .setLastName(lastName)
+            .setEmail(email)
+            .setGender(gender)
+            .setPhone(phone)
+            .setDateOfBirth(month, year)
             .setSubjects("English")
-            .setHobbits()
+            .setHobbits(hobby)
             .setPicture("Picture.jpg")
-            .setAddress("current address")
+            .setAddress(address)
             .setStateAndCity()
             .submit();
 
 
-    registrationPage.checkResult("Student Name", "ivan ivanov")
-            .checkResult("Student Email", "test@test.ru")
-            .checkResult("Gender", "Male")
-            .checkResult("Mobile", "8005001234")
-            .checkResult("Date of Birth", "08 August,1992")
+    registrationPage.checkResult("Student Name", firstName + " " + lastName)
+            .checkResult("Student Email", email)
+            .checkResult("Gender", gender)
+            .checkResult("Mobile", phone)
+            .checkResult("Date of Birth", "08 " + month + "," + year)
             .checkResult("Subjects", "English")
-            .checkResult("Hobbies", "Music")
+            .checkResult("Hobbies", hobby)
             .checkResult("Picture", "Picture.jpg")
-            .checkResult("Address", "current address")
+            .checkResult("Address", address)
             .checkResult("State and City", "NCR Delhi");
   }
 
   @Test
   void minFillRegistrationFormTest() {
     registrationPage.openPage("automation-practice-form")
-            .setFirstName("ivan")
-            .setLastName("ivanov")
-            .setGender("Male")
-            .setPhone("8005001234")
+            .setFirstName(firstName)
+            .setLastName(lastName)
+            .setGender(gender)
+            .setPhone(phone)
             .submit();
 
     registrationPage.isAvailableResult();
@@ -61,9 +87,9 @@ public class StudentRegistrationFormTests {
   @Test
   void negativeRegistrationFormTest() {
     registrationPage.openPage("automation-practice-form")
-            .setFirstName("ivan")
-            .setLastName("ivanov")
-            .setGender("Male")
+            .setFirstName(firstName)
+            .setLastName(lastName)
+            .setGender(gender)
             .submit();
 
     registrationPage.isNotAvailableResult();
