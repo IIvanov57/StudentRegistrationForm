@@ -21,10 +21,8 @@ public class RegistrationPage {
           hobbitsCheckBox = $("#hobbiesWrapper"),
           uploadPictureInput = $("#uploadPicture"),
           addressInput = $("#currentAddress"),
-          state = $("#state"),
-          stateElement = $("#react-select-3-option-0"),
-          city = $("#city"),
-          cityElement = $("#react-select-4-option-0"),
+          stateOption = $("#state"),
+          cityOption = $("#city"),
           submitButton = $("#submit");
 
   public RegistrationPage openPage(String path) {
@@ -75,7 +73,6 @@ public class RegistrationPage {
 
   public RegistrationPage setHobbits(String hobby) {
     hobbitsCheckBox.$(byText(hobby)).click();
-    ;
     return this;
   }
 
@@ -90,11 +87,13 @@ public class RegistrationPage {
     return this;
   }
 
-  public RegistrationPage setStateAndCity() {
-    state.click();
-    stateElement.click();
-    city.click();
-    cityElement.click();
+  public RegistrationPage setStateAndCity(String state, String city) {
+
+    stateOption.click();
+    stateOption.$(byText(state)).click();
+    cityOption.click();
+    cityOption.$(byText(city)).click();
+
     return this;
   }
 

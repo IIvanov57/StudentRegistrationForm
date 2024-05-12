@@ -2,7 +2,6 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
@@ -12,34 +11,25 @@ public class StudentRegistrationFormTests {
 
   RegistrationPage registrationPage = new RegistrationPage();
 
-  String firstName,
-          lastName,
-          email,
-          phone,
-          gender,
-          address,
-          hobby,
-          month,
-          year;
+  String firstName = getRandomFirstName(),
+          lastName = getRandomLastName(),
+          email = getRandomEmailAddress(),
+          phone = getRandomPhone(),
+          gender = getRandomGender(),
+          address = getRandomAddress(),
+          hobby = getRandomHobbits(),
+          month = getRandomMonth(),
+          year = getRandomYear(),
+          subject = getRandomSubject(),
+          state = getRandomState(),
+          city = getRandomCity(state);
+
 
   @BeforeAll
   static void beforeALL() {
     Configuration.pageLoadStrategy = "eager";
     Configuration.browserSize = "1024x768";
 
-  }
-
-  @BeforeEach
-  void generateTestDate() {
-    firstName = getRandomFirstName();
-    lastName = getRandomLastName();
-    email = getRandomEmailAddress();
-    phone = getRandomPhone();
-    gender = getRandomGender();
-    address = getRandomAddress();
-    hobby = getRandomHobbits();
-    month = getRandomMonth();
-    year = getRandomYear();
   }
 
   @Test
@@ -51,11 +41,11 @@ public class StudentRegistrationFormTests {
             .setGender(gender)
             .setPhone(phone)
             .setDateOfBirth(month, year)
-            .setSubjects("English")
+            .setSubjects(subject)
             .setHobbits(hobby)
             .setPicture("Picture.jpg")
             .setAddress(address)
-            .setStateAndCity()
+            .setStateAndCity(state, city)
             .submit();
 
 
@@ -64,11 +54,11 @@ public class StudentRegistrationFormTests {
             .checkResult("Gender", gender)
             .checkResult("Mobile", phone)
             .checkResult("Date of Birth", "08 " + month + "," + year)
-            .checkResult("Subjects", "English")
+            .checkResult("Subjects", subject)
             .checkResult("Hobbies", hobby)
             .checkResult("Picture", "Picture.jpg")
             .checkResult("Address", address)
-            .checkResult("State and City", "NCR Delhi");
+            .checkResult("State and City", state + " " + city);
   }
 
   @Test

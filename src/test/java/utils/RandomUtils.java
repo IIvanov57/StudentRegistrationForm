@@ -7,6 +7,16 @@ import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
+  private static final String[] HOBBITS = {"Sports", "Reading", "Music"};
+  private static final String[] GENDERS = {"Male", "Female", "Other"};
+  private static final String[] SUBJECTS = {"Maths", "English", "Arts", "History"};
+  private static final String[] STATES = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+
+  private static final String[] CITY_NCR = {"Delhi", "Gurgaon", "Noida"};
+  private static final String[] CITY_UTTAR_PRADESH = {"Agra", "Lucknow", "Merrut"};
+  private static final String[] CITY_HARYANA = {"Karnal", "Panipat"};
+  private static final String[] CITY_RAJASTHAN = {"Jaipur", "Jaiselmer"};
+
 
   public static String getRandomMonth() {
     SimpleDateFormat sdf = new SimpleDateFormat("LLLL", Locale.UK);
@@ -39,9 +49,7 @@ public class RandomUtils {
   }
 
   public static String getRandomGender() {
-    String[] genders = {"Male", "Female", "Other"};
-
-    return getRandomItemFromArray(genders);
+    return getRandomItemFromArray(GENDERS);
   }
 
   public static String getRandomItemFromArray(String[] array) {
@@ -55,10 +63,26 @@ public class RandomUtils {
   }
 
   public static String getRandomHobbits() {
+    return getRandomItemFromArray(HOBBITS);
+  }
 
-    String[] hobbits = {"Sports", "Reading", "Music"};
+  public static String getRandomSubject() {
+    return getRandomItemFromArray(SUBJECTS);
+  }
 
-    return getRandomItemFromArray(hobbits);
+  public static String getRandomState() {
+    return getRandomItemFromArray(STATES);
+  }
+
+  public static String getRandomCity(String state) {
+
+    return switch (state) {
+      case "NCR" -> getRandomItemFromArray(CITY_NCR);
+      case "Uttar Pradesh" -> getRandomItemFromArray(CITY_UTTAR_PRADESH);
+      case "Haryana" -> getRandomItemFromArray(CITY_HARYANA);
+      case "Rajasthan" -> getRandomItemFromArray(CITY_RAJASTHAN);
+      default -> null;
+    };
   }
 
 
