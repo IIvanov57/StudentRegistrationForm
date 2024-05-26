@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
 import pages.components.TableResponsiveComponent;
 
@@ -25,6 +26,7 @@ public class RegistrationPage {
           cityOption = $("#city"),
           submitButton = $("#submit");
 
+  @Step("open page")
   public RegistrationPage openPage(String path) {
     open("https://demoqa.com/" + path);
     executeJavaScript("$('footer').remove();");
@@ -32,31 +34,36 @@ public class RegistrationPage {
     return this;
   }
 
+  @Step("input firstname")
   public RegistrationPage setFirstName(String firstName) {
     firstNameInput.setValue(firstName).click();
     return this;
   }
-
+  @Step("input lastname")
   public RegistrationPage setLastName(String lastName) {
     lastNameInput.setValue(lastName).click();
     return this;
   }
 
+  @Step("input email")
   public RegistrationPage setEmail(String email) {
     emailInput.setValue(email).click();
     return this;
   }
 
+  @Step("selecting gender")
   public RegistrationPage setGender(String gender) {
     genderRadio.$(byText(gender)).click();
     return this;
   }
 
+  @Step("input phone")
   public RegistrationPage setPhone(String phone) {
     userNumberInput.setValue(phone).click();
     return this;
   }
 
+  @Step("selecting date of birth")
   public RegistrationPage setDateOfBirth(String month, String year) {
     calendarInput.click();
     calendarComponent.setDate(month, year);
@@ -64,29 +71,33 @@ public class RegistrationPage {
     return this;
   }
 
+  @Step("input subject")
   public RegistrationPage setSubjects(String subjects) {
     subjectInput.click();
     subjectInput.setValue(subjects).pressEnter();
 
     return this;
   }
-
+  @Step("selecting hobbits")
   public RegistrationPage setHobbits(String hobby) {
     hobbitsCheckBox.$(byText(hobby)).click();
     return this;
   }
 
+  @Step("download picture")
   public RegistrationPage setPicture(String pictureName) {
     uploadPictureInput.uploadFromClasspath(pictureName);
     return this;
   }
 
+  @Step("input address")
   public RegistrationPage setAddress(String address) {
     addressInput.click();
     addressInput.setValue(address).click();
     return this;
   }
 
+  @Step("selecting state and city")
   public RegistrationPage setStateAndCity(String state, String city) {
 
     stateOption.click();
@@ -96,22 +107,25 @@ public class RegistrationPage {
 
     return this;
   }
-
+  @Step("submit form")
   public RegistrationPage submit() {
     submitButton.pressEnter();
     return this;
   }
 
+  @Step("validation value")
   public RegistrationPage checkResult(String key, String value) {
     responsiveComponent.checkResultInTable(key, value);
     return this;
   }
 
+  @Step("check available result table")
   public RegistrationPage isAvailableResult() {
     responsiveComponent.isAvailableTableResult();
     return this;
   }
 
+  @Step("check is not available result table")
   public RegistrationPage isNotAvailableResult() {
     responsiveComponent.isNotAvailableTableResult();
     return this;
