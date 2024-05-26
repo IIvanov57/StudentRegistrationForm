@@ -6,7 +6,7 @@ import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationPage;
@@ -14,7 +14,7 @@ import pages.RegistrationPage;
 import java.util.Map;
 
 import static utils.RandomUtils.*;
-
+@Tag("registration_form_tests")
 public class StudentRegistrationFormTests {
 
   RegistrationPage registrationPage = new RegistrationPage();
@@ -36,7 +36,7 @@ public class StudentRegistrationFormTests {
   @BeforeAll
   static void beforeALL() {
     Configuration.pageLoadStrategy = "eager";
-    //Configuration.browserSize = "1024x768"; 
+    //Configuration.browserSize = "1024x768";
     Configuration.browserSize = "1920x1080";
     Configuration.timeout = 10000;
     Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
