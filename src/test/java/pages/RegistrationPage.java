@@ -26,7 +26,7 @@ public class RegistrationPage {
           cityOption = $("#city"),
           submitButton = $("#submit");
 
-  @Step("open page")
+  @Step("Открытие главной страницы с формой")
   public RegistrationPage openPage(String path) {
     open("https://demoqa.com/" + path);
     executeJavaScript("$('footer').remove();");
@@ -34,36 +34,36 @@ public class RegistrationPage {
     return this;
   }
 
-  @Step("input firstname")
+  @Step("Ввод имени пользователя")
   public RegistrationPage setFirstName(String firstName) {
     firstNameInput.setValue(firstName).click();
     return this;
   }
-  @Step("input lastname")
+  @Step("Ввод фамилии пользователя")
   public RegistrationPage setLastName(String lastName) {
     lastNameInput.setValue(lastName).click();
     return this;
   }
 
-  @Step("input email")
+  @Step("Ввод почты пользователя")
   public RegistrationPage setEmail(String email) {
     emailInput.setValue(email).click();
     return this;
   }
 
-  @Step("selecting gender")
+  @Step("Выбор пола пользователя")
   public RegistrationPage setGender(String gender) {
     genderRadio.$(byText(gender)).click();
     return this;
   }
 
-  @Step("input phone")
+  @Step("Ввод телефона для пользователя")
   public RegistrationPage setPhone(String phone) {
     userNumberInput.setValue(phone).click();
     return this;
   }
 
-  @Step("selecting date of birth")
+  @Step("Заполнение поля дня рождения пользователя")
   public RegistrationPage setDateOfBirth(String day, String month, String year) {
     calendarInput.click();
     calendarComponent.setDate(day,month, year);
@@ -71,33 +71,33 @@ public class RegistrationPage {
     return this;
   }
 
-  @Step("input subject")
+  @Step("Заполнение поля subjects")
   public RegistrationPage setSubjects(String subjects) {
     subjectInput.click();
     subjectInput.setValue(subjects).pressEnter();
 
     return this;
   }
-  @Step("selecting hobbits")
+  @Step("Выбор хобби пользователя")
   public RegistrationPage setHobbits(String hobby) {
     hobbitsCheckBox.$(byText(hobby)).click();
     return this;
   }
 
-  @Step("download picture")
+  @Step("Загрузка аватарки")
   public RegistrationPage setPicture(String pictureName) {
     uploadPictureInput.uploadFromClasspath(pictureName);
     return this;
   }
 
-  @Step("input address")
+  @Step("Заполнения адреса проживания")
   public RegistrationPage setAddress(String address) {
     addressInput.click();
     addressInput.setValue(address).click();
     return this;
   }
 
-  @Step("selecting state and city")
+  @Step("Выбор штата и города проживания")
   public RegistrationPage setStateAndCity(String state, String city) {
 
     stateOption.click();
@@ -107,25 +107,25 @@ public class RegistrationPage {
 
     return this;
   }
-  @Step("submit form")
+  @Step("Подтверждения заполнения формы")
   public RegistrationPage submit() {
     submitButton.pressEnter();
     return this;
   }
 
-  @Step("validation value")
+  @Step("Проверка правильности ввода данных")
   public RegistrationPage checkResult(String key, String value) {
     responsiveComponent.checkResultInTable(key, value);
     return this;
   }
 
-  @Step("check available result table")
+  @Step("Проверка доступности таблицы с результатами")
   public RegistrationPage isAvailableResult() {
     responsiveComponent.isAvailableTableResult();
     return this;
   }
 
-  @Step("check is not available result table")
+  @Step("Проверка что таблица с результатом НЕ доступна")
   public RegistrationPage isNotAvailableResult() {
     responsiveComponent.isNotAvailableTableResult();
     return this;
