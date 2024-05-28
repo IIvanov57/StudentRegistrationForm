@@ -85,5 +85,9 @@ public class RandomUtils {
     };
   }
 
+  public static String getRandomDay(){
+    return String.format("%s",new Faker().number().numberBetween(1,28));
+  }
+
 
 }

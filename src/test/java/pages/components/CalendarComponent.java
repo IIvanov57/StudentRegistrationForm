@@ -12,11 +12,12 @@ public class CalendarComponent {
           selectYear = $(".react-datepicker__year-select"),
           selectEighthDay = $(".react-datepicker__day--008");
 
-  public void setDate(String month, String year) {
+  public void setDate(String day, String month, String year) {
     selectMonth.click();
     selectMonth.selectOption(month);
     selectYear.click();
     selectYear.selectOption(year);
-    selectEighthDay.click();
+
+    $(".react-datepicker__day--0"+day+":not(.react-datepicker__day--outside-month)").click();
   }
 }
