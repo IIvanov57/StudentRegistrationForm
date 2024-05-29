@@ -36,8 +36,8 @@ public class TestBase {
     ));
     Configuration.browserCapabilities = capabilities;
 
-    executeJavaScript("$('footer').remove();");
-    executeJavaScript("$('#fixedban').remove();");
+    //executeJavaScript("$('footer').remove();");
+    //executeJavaScript("$('#fixedban').remove();");
 
   }
 
