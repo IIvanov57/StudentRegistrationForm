@@ -23,7 +23,7 @@ public class TestBase {
 
     browserSize = System.getProperty("browserSize", "1920x1080");
     browser = System.getProperty("browser", "chrome");
-    browserVersion="120";
+    browserVersion=System.getProperty("browserVersion", "120");
     Configuration.timeout = 10000;
     //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     //System.setProperty("remote","https://localhost");
